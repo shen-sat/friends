@@ -163,7 +163,11 @@ module Friends
     # Find the names of all locations in this description.
     # @return [Array] list of all location names in the description
     def location_names
-      @description.scan(/(?<=_)\w[^_]*(?=_)/).uniq
+      explicit_locations = @description.scan(/(?<=_)\w[^_]*(?=_)/).uniq
+
+      return [implicit_location] if explicit_locations.blank? && implicit_location
+
+      explicit_locations
     end
 
     private

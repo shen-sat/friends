@@ -677,7 +677,7 @@ module Friends
         # Parse the line and update the parsing state.
         state = parse_line!(line, line_num: line_num, state: state)
       end
-
+      set_implicit_locations!
       set_n_activities!(:friend)
       set_n_activities!(:location)
     end
