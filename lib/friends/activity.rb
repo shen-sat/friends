@@ -7,6 +7,7 @@ require "friends/event"
 
 module Friends
   class Activity < Event
+  	attr_accessor :implicit_location
     # @return [Regexp] the string of what we expected during deserialization
     def self.deserialization_expectation
       "[YYYY-MM-DD]: [Activity]"
