@@ -660,13 +660,9 @@ module Friends
 
     def set_implicit_location(activities)
       implicit_location = nil
-      @activities.each do |activity| 
-        if activity.description.match(/moved to \_.+\_/)
-          matched_chunk = activity.description.match(/moved to \_.+\_/)[0]
-          implicit_location_chars = matched_chunk.match(/\_.+\_/)[0].chars
-          implicit_location_chars.pop
-          implicit_location_chars.shift
-          implicit_location = implicit_location_chars.join('')
+      @activities.reverse.each do |activity| 
+        if activity.description.match(/(?<=moved to _)\w[^_]*(?=_)/)
+          implicit_location = activity.description.match(/(?<=moved to _)\w[^_]*(?=_)/)[0]
           next
         end
         if !implicit_location.nil? && !activity.description.match(/\_.+\_/)
@@ -695,8 +691,7 @@ module Friends
         state = parse_line!(line, line_num: line_num, state: state)
       end
       set_implicit_location(@activities)
-      require 'pry' 
-      binding.pry
+      
       set_n_activities!(:friend)
       set_n_activities!(:location)
     end
