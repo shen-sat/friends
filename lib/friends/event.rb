@@ -12,6 +12,7 @@ require "friends/serializable"
 
 module Friends
   class Event
+    attr_accessor :implicit_location
     extend Serializable
 
     SERIALIZATION_PREFIX = "- ".freeze
