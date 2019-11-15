@@ -54,16 +54,16 @@ clean_describe "list activities" do
       end
 
       describe "when implicit location is set" do
-        let(:location_name) { "london" }
+        let(:location_name) { "atlantis" }
         let(:content) do
           <<-FILE
 ### Activities:
-- 2015-01-06: Went to a museum with **George Washington Carver**.
-- 2014-12-31: Moved to _Paris_
-- 2015-01-14: Got lunch with **Grace Hopper** and **George Washington Carver**. @food
+- 2015-01-30: Went to a museum with **George Washington Carver**.
+- 2015-01-29: Moved to _Paris_
+- 2015-01-01: Got lunch with **Grace Hopper** and **George Washington Carver**. @food
 - 2014-12-31: Celebrated the new year in _Paris_ with **Marie Curie**. @partying @food
-- 2014-12-31: Moved to _Atlantis_
-- 2014-11-15: Talked to **George Washington Carver** on the phone for an hour.
+- 2014-12-30: Moved to _Atlantis_
+- 2014-12-29: Talked to **George Washington Carver** on the phone for an hour.
 
 ### Friends:
 - George Washington Carver
