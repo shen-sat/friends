@@ -12,7 +12,6 @@ require "friends/serializable"
 
 module Friends
   class Event
-    attr_accessor :implicit_location
     extend Serializable
 
     SERIALIZATION_PREFIX = "- ".freeze
@@ -65,6 +64,7 @@ module Friends
 
     attr_reader :date
     attr_accessor :description
+    attr_accessor :implicit_location
 
     # @return [String] the command-line display text for the activity
     def to_s
