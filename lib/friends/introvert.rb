@@ -661,8 +661,8 @@ module Friends
     def set_implicit_location(activities)
       implicit_location = nil
       @activities.reverse.each do |activity| 
-        if activity.description.match(/(?<=moved to _)\w[^_]*(?=_)/)
-          implicit_location = activity.description.match(/(?<=moved to _)\w[^_]*(?=_)/)[0]
+        if activity.description.match(/(?<=[mM]oved to _)\w[^_]*(?=_)/)
+          implicit_location = activity.description.match(/(?<=[mM]oved to _)\w[^_]*(?=_)/)[0]
           next
         end
         if !implicit_location.nil? && !activity.description.match(/\_.+\_/)
