@@ -53,7 +53,7 @@ clean_describe "list activities" do
         end
       end
 
-      describe "when implicit location is set xxx" do
+      describe "when implicit location is set" do
         let(:location_name) { "atlantis" }
         let(:content) do
           <<-FILE

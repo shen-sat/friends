@@ -133,9 +133,13 @@ module Friends
     end
 
     # @param location [Location] the location to test
-    # @return [Boolean] true iff this activity includes the given location
+    # @return [Boolean] true iff this activity includes the given location in the description or implicit location
     def includes_location?(location)
       (@description.scan(/(?<=_)[^_]+(?=_)/).include? location.name) || location.name == @implicit_location
+    end
+
+    def includes_moved_to?
+      @description[/(?<=[mM]oved to _)\w[^_]*(?=_)/]
     end
 
     # @param friend [Friend] the friend to test

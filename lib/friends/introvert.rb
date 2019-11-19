@@ -658,14 +658,16 @@ module Friends
       end
     end
 
-    def set_implicit_location(activities)
+    def assign_home_locations(activities)
       implicit_location = nil
       @activities.reverse.each do |activity| 
-        if activity.description.match(/(?<=[mM]oved to _)\w[^_]*(?=_)/)
-          implicit_location = activity.description.match(/(?<=[mM]oved to _)\w[^_]*(?=_)/)[0]
+        # Does activity include moved to line?
+        if activity.includes_moved_to?
+          implicit_location = activity.description[/(?<=[mM]oved to _)\w[^_]*(?=_)/]
           next
         end
-        if !implicit_location.nil? && !activity.description.match(/\_.+\_/)
+        # Does activity have a location in description?
+        if activity.location_names.empty?
           activity.implicit_location = implicit_location
         end
       end
@@ -690,7 +692,7 @@ module Friends
         # Parse the line and update the parsing state.
         state = parse_line!(line, line_num: line_num, state: state)
       end
-      set_implicit_location(@activities)
+      assign_home_locations(@activities)
       
       set_n_activities!(:friend)
       set_n_activities!(:location)
